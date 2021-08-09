@@ -26,7 +26,7 @@ parameters:
 
 stages:
 
-- stage: Nginx Server Initialization
+- stage: Nginx-Server-Initialization
 
   dependsOn: []
 
