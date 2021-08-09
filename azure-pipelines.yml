@@ -32,7 +32,7 @@ stages:
 
   jobs:
 
-  - deployment: 'Server Installation'
+  - deployment: 'Server_Installation'
 
     environment:
 
@@ -52,7 +52,7 @@ stages:
 
           - task: PowerShell@2
 
-            displayName: 'Software installation on Nginx'
+            displayName: 'Software_installation_on_Nginx'
 
             inputs:
 
