@@ -1,0 +1,68 @@
+trigger: none
+
+pr: none 
+
+ 
+
+name: ProdToTest-Db-Restore- $(Rev:r)
+
+parameters: 
+
+- name: environmentTag
+
+  displayName: Environment
+
+  type: string
+
+  default: tam-9771
+
+  values:
+
+  - tam-9771
+
+  - dev
+
+   
+
+stages:
+
+- stage: Nginx Server Initialization
+
+  dependsOn: []
+
+  jobs:
+
+  - deployment: 'Server Installation'
+
+    environment:
+
+      name: Test_Environment
+
+      resourceType: 'VirtualMachine'
+
+      tags: nginx
+
+    strategy:
+
+      runOnce:
+
+        deploy:
+
+          steps:
+
+          - task: PowerShell@2
+
+            displayName: 'Software installation on Nginx01'
+
+            inputs:
+
+              targetType: 'inline'
+
+              script: |
+
+                  Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
+                  Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
+                  Write-Host "Database has been restored successfully."
+
+                 
+
