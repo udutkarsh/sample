@@ -52,7 +52,7 @@ stages:
 
           - task: PowerShell@2
 
-            displayName: 'Software installation on Nginx01'
+            displayName: 'Software installation on Nginx'
 
             inputs:
 
