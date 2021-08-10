@@ -14,11 +14,11 @@ parameters:
 
   type: string
 
-  default: tam-9771
+  default: tam
 
   values:
 
-  - tam-9771
+  - tam
 
   - dev
 
@@ -32,7 +32,7 @@ stages:
 
   jobs:
 
-  - deployment: 'tomcat_Installation'
+  - deployment: 'tomcatInstallation'
 
     environment:
 
