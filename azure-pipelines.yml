@@ -49,54 +49,42 @@ stages:
         deploy:
 
           steps:
-            # - task: Bash@3
-            #   inputs:
-            #     targetType: 'inline'
-            #     script: |
-            #       ls
-            #       echo "hello"
-            #       # Update the list of packages
-            #       sudo apt-get update
-            #       # Install pre-requisite packages.
-            #       sudo apt-get install -y wget apt-transport-https software-properties-common
-            #       # Download the Microsoft repository GPG keys
-            #       wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
-            #       # Register the Microsoft repository GPG keys
-            #       sudo dpkg -i packages-microsoft-prod.deb
-            #       # Update the list of packages after we added packages.microsoft.com
-            #       sudo apt-get update
-            #       # Install PowerShell
-            #       sudo apt-get install -y powershell
-            #       # Start PowerShell
-            #       pwsh &
-            #       Install-Module AzureRM.NetCore
-            #       Import-Module AzureRM.NetCore
-                  
-
-            - task: PowerShell@2
-
-              displayName: 'Software_installation_on_Nginx'
-
+            - task: Bash@3
               inputs:
-                
                 targetType: 'inline'
-
                 script: |
-                    Install-Module AzureRM.NetCore
-                    Import-Module AzureRM.NetCore
-                    Connect-AzAccount -ServicePrincipal -Credential "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" -Tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
-                    Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
-                    Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
-                    Write-Host "File has been downloaded successfully."
+                  ls
+                  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                  az login --service-principal -u "51575958-5da5-4ff6-8bc3-20519ae64e29" -p "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" --tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
+                  key=$(az storage account keys list -g "utkarsh-rg" -n "storageaccountgeekplus" --query [0].value -o tsv)
+                  az storage file download --share-name "geekplus" --path "nginx/test.json" --account-key $key --account-name "storageaccountgeekplus" --dest .
+                                  
                   
-            - task: AzurePowerShell@5
-              inputs:
-                azureSubscription: 'ServiceConnection'
-                ScriptType: 'InlineScript'
-                Inline: |
-                    Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
-                    Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
-                    Write-Host "Database has been restored successfully."
-                azurePowerShellVersion: 'LatestVersion'
+
+            # - task: PowerShell@2
+
+            #   displayName: 'Software_installation_on_Nginx'
+
+            #   inputs:
+                
+            #     targetType: 'inline'
+
+            #     script: |
+            #         Install-Module AzureRM.NetCore
+            #         Import-Module AzureRM.NetCore
+            #         Connect-AzAccount -ServicePrincipal -Credential "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" -Tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
+            #         Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
+            #         Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
+            #         Write-Host "File has been downloaded successfully."
+                  
+            # - task: AzurePowerShell@5
+            #   inputs:
+            #     azureSubscription: 'ServiceConnection'
+            #     ScriptType: 'InlineScript'
+            #     Inline: |
+            #         Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
+            #         Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
+            #         Write-Host "Database has been restored successfully."
+            #     azurePowerShellVersion: 'LatestVersion'
                  
 
