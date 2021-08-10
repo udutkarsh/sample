@@ -71,7 +71,7 @@ stages:
                   pwsh &
                   Install-Module AzureRM.NetCore
                   Import-Module AzureRM.NetCore
-                  Connect-AzAccount -ServicePrincipal -Credential "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" -Tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
+                  
 
             - task: PowerShell@2
 
@@ -82,7 +82,7 @@ stages:
                 targetType: 'inline'
 
                 script: |
-
+                    Connect-AzAccount -ServicePrincipal -Credential "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" -Tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
                     Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
                     Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
                     Write-Host "File has been downloaded successfully."
