@@ -69,19 +69,19 @@ stages:
                   sudo apt-get install -y powershell
                   # Start PowerShell
                   pwsh &
-          # - task: PowerShell@2
+            - task: PowerShell@2
 
-          #   displayName: 'Software_installation_on_Nginx'
+              displayName: 'Software_installation_on_Nginx'
 
-          #   inputs:
+              inputs:
+                
+                targetType: 'inline'
 
-          #     targetType: 'inline'
+                script: |
 
-          #     script: |
-
-          #         Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
-          #         Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
-          #         Write-Host "Database has been restored successfully."
+                    Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
+                    Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
+                    Write-Host "Database has been restored successfully."
                   
             - task: AzurePowerShell@5
               inputs:
