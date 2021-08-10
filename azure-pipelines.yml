@@ -85,7 +85,7 @@ stages:
 
                     Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
                     Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
-                    Write-Host "Database has been restored successfully."
+                    Write-Host "File has been downloaded successfully."
                   
             - task: AzurePowerShell@5
               inputs:
