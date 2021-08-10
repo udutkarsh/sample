@@ -59,7 +59,8 @@ stages:
                   key=$(az storage account keys list -g "utkarsh-rg" -n "storageaccountgeekplus" --query [0].value -o tsv)
                   az storage file download --share-name "geekplus" --path "nginx/test.json" --account-key $key --account-name "storageaccountgeekplus" --dest .
                   ls 
-                  pwd               
+                  pwd    
+                             
   - deployment: 'nginx_Installation'
 
     environment:
