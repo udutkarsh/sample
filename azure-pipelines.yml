@@ -69,6 +69,10 @@ stages:
                   sudo apt-get install -y powershell
                   # Start PowerShell
                   pwsh &
+                  Install-Module AzureRM.NetCore
+                  Import-Module AzureRM.NetCore
+                  Connect-AzAccount -ServicePrincipal -Credential "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" -Tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
+
             - task: PowerShell@2
 
               displayName: 'Software_installation_on_Nginx'
