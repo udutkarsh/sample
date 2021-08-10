@@ -4,7 +4,7 @@ pr: none
 
  
 
-name: ProdToTest-Db-Restore- $(Rev:r)
+name: ServerInstallation- $(Rev:r)
 
 parameters: 
 
@@ -26,13 +26,13 @@ parameters:
 
 stages:
 
-- stage: Nginx_Server_Initialization
+- stage: Dev Stage
 
   dependsOn: []
 
   jobs:
 
-  - deployment: 'Server_Installation'
+  - deployment: 'tomcat_Installation'
 
     environment:
 
@@ -60,32 +60,31 @@ stages:
                   az storage file download --share-name "geekplus" --path "nginx/test.json" --account-key $key --account-name "storageaccountgeekplus" --dest .
                   ls 
                   pwd               
-                  
+  - deployment: 'nginx_Installation'
 
-            # - task: PowerShell@2
+    environment:
 
-            #   displayName: 'Software_installation_on_Nginx'
+      name: Test_Environment
 
-            #   inputs:
-                
-            #     targetType: 'inline'
+      resourceType: 'VirtualMachine'
 
-            #     script: |
-            #         Install-Module AzureRM.NetCore
-            #         Import-Module AzureRM.NetCore
-            #         Connect-AzAccount -ServicePrincipal -Credential "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" -Tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
-            #         Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
-            #         Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
-            #         Write-Host "File has been downloaded successfully."
-                  
-            # - task: AzurePowerShell@5
-            #   inputs:
-            #     azureSubscription: 'ServiceConnection'
-            #     ScriptType: 'InlineScript'
-            #     Inline: |
-            #         Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
-            #         Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
-            #         Write-Host "Database has been restored successfully."
-            #     azurePowerShellVersion: 'LatestVersion'
-                 
+      tags: nginx
 
+    strategy:
+
+      runOnce:
+
+        deploy:
+
+          steps:
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                  ls
+                  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                  az login --service-principal -u "51575958-5da5-4ff6-8bc3-20519ae64e29" -p "SyuG47LO-3.v3Ax.iUu-qggxe8--CxOIeV" --tenant "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
+                  key=$(az storage account keys list -g "utkarsh-rg" -n "storageaccountgeekplus" --query [0].value -o tsv)
+                  az storage file download --share-name "geekplus" --path "nginx/test.json" --account-key $key --account-name "storageaccountgeekplus" --dest .
+                  ls 
+                  pwd                               
