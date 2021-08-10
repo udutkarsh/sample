@@ -69,14 +69,14 @@ stages:
           #         Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
           #         Write-Host "Database has been restored successfully."
                   
-          - task: AzurePowerShell@5
-            inputs:
-              azureSubscription: 'ServiceConnection'
-              ScriptType: 'InlineScript'
-              Inline: |
-                  Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
-                  Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
-                  Write-Host "Database has been restored successfully."
-              azurePowerShellVersion: 'LatestVersion'
+          # - task: AzurePowerShell@5
+          #   inputs:
+          #     azureSubscription: 'ServiceConnection'
+          #     ScriptType: 'InlineScript'
+          #     Inline: |
+          #         Set-AzCurrentStorageAccount -ResourceGroupName "utkarsh-rg" -AccountName "storageaccountgeekplus"
+          #         Get-AzStorageFileContent -ShareName "geekplus" -Path "nginx/test.json" 
+          #         Write-Host "Database has been restored successfully."
+          #     azurePowerShellVersion: 'LatestVersion'
                  
 
