@@ -44,7 +44,7 @@ stages:
                   chmod 777 Install_Nginx.sh
                   chmod 777 Nginx_Install.tgz
                   sudo mkdir /usr/local/geekplus
-                  mv ./* /usr/local/geekplus/
+                  sudo mv ./* /usr/local/geekplus/
                   cd /usr/local/geekplus/
                   ls 
                   pwd
@@ -85,7 +85,7 @@ stages:
                   chmod 777 Install_tomcat.sh
                   chmod 777 Tomcat_Install.tgz
                   sudo mkdir /usr/local/geekplus
-                  mv ./* /usr/local/geekplus/
+                  sudo mv ./* /usr/local/geekplus/
                   cd /usr/local/geekplus/
                   ls 
                   pwd
@@ -131,7 +131,7 @@ stages:
                   chmod 777 Install_Redis.sh
                   chmod 777 Redis_Install.tgz
                   sudo mkdir /usr/local/geekplus
-                  mv ./* /usr/local/geekplus/
+                  sudo mv ./* /usr/local/geekplus/
                   cd /usr/local/geekplus/
                   ls 
                   pwd
@@ -173,7 +173,7 @@ stages:
                   chmod 777 Install_tomcat.sh
                   chmod 777 Tomcat_Install.tgz
                   sudo mkdir /usr/local/geekplus
-                  mv ./* /usr/local/geekplus/
+                  sudo mv ./* /usr/local/geekplus/
                   cd /usr/local/geekplus/
                   ls 
                   pwd
@@ -214,7 +214,7 @@ stages:
                   chmod 777 Install_tomcat.sh
                   chmod 777 Tomcat_Install.tgz
                   sudo mkdir /usr/local/geekplus
-                  mv ./* /usr/local/geekplus/
+                  sudo mv ./* /usr/local/geekplus/
                   cd /usr/local/geekplus/
                   ls 
                   pwd
