@@ -2,8 +2,6 @@ trigger: none
 
 pr: none 
 
- 
-
 name: ServerInstallation- $(Rev:r)
 
 stages:
@@ -48,7 +46,9 @@ stages:
                   cd /usr/local/geekplus/
                   ls 
                   pwd
-                  ./Install_Nginx.sh 
+                  ./Install_Nginx.sh
+
+    continueOnError: true
 - stage: mockapi_Stage
 
   dependsOn: []
@@ -89,7 +89,8 @@ stages:
                   cd /usr/local/geekplus/
                   ls 
                   pwd
-                  ./Install_tomcat.sh 
+                  ./Install_tomcat.sh
+    continueOnError: true 
 - stage: wms_Stage
 
   dependsOn: []
@@ -137,6 +138,7 @@ stages:
                   pwd
                   ./Install_Redis.sh
                   ./Install_tomcat.sh
+    continueOnError: true
 - stage: rms_Stage
 
   dependsOn: []
@@ -178,6 +180,7 @@ stages:
                   ls 
                   pwd
                   ./Install_tomcat.sh
+    continueOnError: true
 - stage: vapp_Stage
 
   dependsOn: []
@@ -219,3 +222,4 @@ stages:
                   ls 
                   pwd
                   ./Install_tomcat.sh   
+    continueOnError: true
