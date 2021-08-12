@@ -120,75 +120,75 @@ stages:
                   pwd
                   ./Install_Redis.sh
                   ./Install_tomcat.sh
-# - stage: rms_Stage
+- stage: rms_Stage
 
-#   dependsOn: []
+  dependsOn: []
 
-#   jobs:
+  jobs:
 
-#   - deployment: 'software_rms_Installation'
+  - deployment: 'software_rms_Installation'
 
-#     environment:
+    environment:
 
-#       name: Dev_Environment
+      name: Dev_Environment
 
-#       resourceType: 'VirtualMachine'
+      resourceType: 'VirtualMachine'
 
-#       tags: rms
+      tags: rms
 
-#     strategy:
+    strategy:
 
-#       runOnce:
+      runOnce:
 
-#         deploy:
+        deploy:
 
-#           steps:
-#             - task: Bash@3
-#               inputs:
-#                 targetType: 'inline'
-#                 script: |
-#                   ls
-#                   curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-#                   az login --service-principal -u $(app-id) -p $(secret-key) --tenant $(tanent-id)
-#                   key=$(az storage account keys list -g $(resource-group) -n $(storage-account-name) --query [0].value -o tsv)
-#                   az storage file download --share-name "geek-code" --path "server-code/04 RMS-Host/Tomcat_Install/Install_tomcat.sh" --account-key $key --account-name $(storage-account-name) --dest .
-#                   az storage file download --share-name "geek-code" --path "server-code/04 RMS-Host/Tomcat_Install/Tomcat_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
-#                   ls 
-#                   pwd
-#                   ./Install_tomcat.sh
-# - stage: vapp_Stage
+          steps:
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                  ls
+                  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                  az login --service-principal -u $(app-id) -p $(secret-key) --tenant $(tanent-id)
+                  key=$(az storage account keys list -g $(resource-group) -n $(storage-account-name) --query [0].value -o tsv)
+                  az storage file download --share-name "geek-code" --path "server-code/04 RMS-Host/Tomcat_Install/Install_tomcat.sh" --account-key $key --account-name $(storage-account-name) --dest .
+                  az storage file download --share-name "geek-code" --path "server-code/04 RMS-Host/Tomcat_Install/Tomcat_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
+                  ls 
+                  pwd
+                  ./Install_tomcat.sh
+- stage: vapp_Stage
 
-#   dependsOn: []
+  dependsOn: []
 
-#   jobs:
+  jobs:
 
-#   - deployment: 'software_vapp_Installation'
+  - deployment: 'software_vapp_Installation'
 
-#     environment:
+    environment:
 
-#       name: Dev_Environment
+      name: Dev_Environment
 
-#       resourceType: 'VirtualMachine'
+      resourceType: 'VirtualMachine'
 
-#       tags: vapp
+      tags: vapp
 
-#     strategy:
+    strategy:
 
-#       runOnce:
+      runOnce:
 
-#         deploy:
+        deploy:
 
-#           steps:
-#             - task: Bash@3
-#               inputs:
-#                 targetType: 'inline'
-#                 script: |
-#                   ls
-#                   curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-#                   az login --service-principal -u $(app-id) -p $(secret-key) --tenant $(tanent-id)
-#                   key=$(az storage account keys list -g $(resource-group) -n $(storage-account-name) --query [0].value -o tsv)
-#                   az storage file download --share-name "geek-code" --path "server-code/05 VAPP-Host/Tomcat_Install/Install_tomcat.sh" --account-key $key --account-name $(storage-account-name) --dest .
-#                   az storage file download --share-name "geek-code" --path "server-code/05 VAPP-Host/Tomcat_Install/Tomcat_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
-#                   ls 
-#                   pwd
-#                   ./Install_tomcat.sh   
+          steps:
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                  ls
+                  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                  az login --service-principal -u $(app-id) -p $(secret-key) --tenant $(tanent-id)
+                  key=$(az storage account keys list -g $(resource-group) -n $(storage-account-name) --query [0].value -o tsv)
+                  az storage file download --share-name "geek-code" --path "server-code/05 VAPP-Host/Tomcat_Install/Install_tomcat.sh" --account-key $key --account-name $(storage-account-name) --dest .
+                  az storage file download --share-name "geek-code" --path "server-code/05 VAPP-Host/Tomcat_Install/Tomcat_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
+                  ls 
+                  pwd
+                  ./Install_tomcat.sh   
