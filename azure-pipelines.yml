@@ -43,6 +43,8 @@ stages:
                   az storage file download --share-name "geek-code" --path "server-code/01 Nginx-Host/Nginx_Install/Nginx_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
                   chmod 777 Install_Nginx.sh
                   chmod 777 Nginx_Install.tgz
+                  mv ./* /usr/local/geekplus/
+                  cd /usr/local/geekplus/
                   ls 
                   pwd
                   ./Install_Nginx.sh    
@@ -81,6 +83,8 @@ stages:
                   az storage file download --share-name "geek-code" --path "server-code/02 API-Host/Tomcat_Install/Tomcat_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
                   chmod 777 Install_tomcat.sh
                   chmod 777 Tomcat_Install.tgz
+                  mv ./* /usr/local/geekplus/
+                  cd /usr/local/geekplus/
                   ls 
                   pwd
                   ./Install_tomcat.sh 
@@ -124,6 +128,8 @@ stages:
                   chmod 777 Tomcat_Install.tgz
                   chmod 777 Install_Redis.sh
                   chmod 777 Redis_Install.tgz
+                  mv ./* /usr/local/geekplus/
+                  cd /usr/local/geekplus/
                   ls 
                   pwd
                   ./Install_Redis.sh
@@ -163,6 +169,8 @@ stages:
                   az storage file download --share-name "geek-code" --path "server-code/04 RMS-Host/Tomcat_Install/Tomcat_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
                   chmod 777 Install_tomcat.sh
                   chmod 777 Tomcat_Install.tgz
+                  mv ./* /usr/local/geekplus/
+                  cd /usr/local/geekplus/
                   ls 
                   pwd
                   ./Install_tomcat.sh
@@ -201,6 +209,8 @@ stages:
                   az storage file download --share-name "geek-code" --path "server-code/05 VAPP-Host/Tomcat_Install/Tomcat_Install.tgz" --account-key $key --account-name $(storage-account-name) --dest .
                   chmod 777 Install_tomcat.sh
                   chmod 777 Tomcat_Install.tgz
+                  mv ./* /usr/local/geekplus/
+                  cd /usr/local/geekplus/
                   ls 
                   pwd
                   ./Install_tomcat.sh   
