@@ -48,7 +48,7 @@ stages:
                   cd /usr/local/geekplus/
                   ls 
                   pwd
-                  ./Install_Nginx.sh Nginx-utkarsh-vm wms-utkarsh-vm rms-utkarsh-vm vapp-utkarsh-vm 
+                  ./Install_Nginx.sh 
 - stage: mockapi_Stage
 
   dependsOn: []
