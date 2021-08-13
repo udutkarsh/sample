@@ -16,7 +16,7 @@ stages:
 
     environment:
 
-      name: Dev_Environment
+      name: $(Environment)
 
       resourceType: 'VirtualMachine'
 
